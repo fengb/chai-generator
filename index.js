@@ -3,60 +3,44 @@ module.exports = function(chai, utils){
     if (typeof obj.next === 'function') {
       var generator = obj
       return generator.next()
-    } else if ('done' in obj) {
+    } else if ('done' in obj && 'value' in obj) {
       return obj
+    } else {
+      // not a real generator
+    }
+  }
+
+  function description(next){
+    var description = next.done ? 'return "' : 'yield "'
+    description += next.value + '"'
+
+    return description
+  }
+
+  function assertNext(context, expected){
+    var actual = extractNext(context._obj)
+    if(!actual){
+      return _super.apply(this, arguments)
     }
 
-    // not a real generator
+    context.assert(
+      actual.value === expected.value && actual.done === expected.done
+    , "expected #{this} to " + description(expected) + " but received " + description(actual)
+    , "expected #{this} to not " + description(actual)
+    , expected
+    , actual
+    )
   }
 
   chai.Assertion.overwriteMethod('yield', function(_super){
     return function(expectedValue){
-      var next = extractNext(this._obj)
-      if(!this){
-        return _super.apply(this, arguments)
-      }
-
-      this.assert(
-          next.done === false
-        , "expected #{this} to yield #{exp} but received return #{act}"
-        , "expected #{this} to not yield #{exp}"
-        , expectedValue // expected
-        , next.value // actual
-      )
-
-      this.assert(
-          next.value === expectedValue
-        , "expected #{this} to yield #{exp} but received yield #{act}"
-        , "expected #{this} to not yield #{exp}"
-        , expectedValue // expected
-        , next.value // actual
-      )
+      assertNext(this, { value: expectedValue, done: false })
     }
   })
 
   chai.Assertion.overwriteMethod('return', function(_super){
     return function(expectedValue){
-      var next = extractNext(this._obj)
-      if(!this){
-        return _super.apply(this, arguments)
-      }
-
-      this.assert(
-          next.done === true
-        , "expected #{this} to return #{exp} but received yield #{act}"
-        , "expected #{this} to not return #{exp}"
-        , expectedValue // expected
-        , next.value // actual
-      )
-
-      this.assert(
-          next.value === expectedValue
-        , "expected #{this} to return #{exp} but received return #{act}"
-        , "expected #{this} to not return #{exp}"
-        , expectedValue // expected
-        , next.value // actual
-      )
+      assertNext(this, { value: expectedValue, done: true })
     }
   })
 }

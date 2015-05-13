@@ -3,8 +3,8 @@ var chaiGenerator = require('..')
 
 chai.use(chaiGenerator)
 
-var DEFAULT_RETURN
-var DEFAULT_YIELD
+var DEFAULT_RETURN = 'retoin'
+var DEFAULT_YIELD = 'yeild'
 
 function *createCounter(){
   var i = 0;
@@ -55,6 +55,24 @@ describe('chai-generator', function(){
     })
   })
 
+  describe('.not.to.yield(value)', function(){
+    it('works when yielding the wrong value', function(){
+      var generator = createCounter()
+      chai.expect(generator).not.to.yield(4)
+      chai.expect(generator).not.to.yield(-1)
+    })
+
+    it('works when returning', function(){
+      var generator = createReturnOnly()
+      chai.expect(generator).not.to.yield(DEFAULT_RETURN)
+    })
+
+    it('works with { value: "val", done: false }', function(){
+      var next = { value: 'val', done: false }
+      chai.expect(next).not.to.yield('foo')
+    })
+  })
+
   describe('.to.return(value)', function(){
     it('works with return only generator', function(){
       var generator = createReturnOnly()
@@ -73,6 +91,24 @@ describe('chai-generator', function(){
     it('works with { value: "val", done: true }', function(){
       var next = { value: 'val', done: true }
       chai.expect(next).to.return('val')
+    })
+  })
+
+  describe('.not.to.return(value)', function(){
+    it('works when return the wrong value', function(){
+      var generator = createReturnOnly()
+      chai.expect(generator).not.to.return('fail')
+    })
+
+    it('works when yielding', function(){
+      var generator = createCounter()
+      chai.expect(generator).not.to.return(0)
+      chai.expect(generator).not.to.return(1)
+    })
+
+    it('works with { value: "val", done: true }', function(){
+      var next = { value: 'val', done: true }
+      chai.expect(next).not.to.return('foo')
     })
   })
 
