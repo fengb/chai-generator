@@ -1,0 +1,27 @@
+{
+  "name": "chai-generator",
+  "version": "1.0.0",
+  "description": "Extend Chai to test ES6 generators",
+  "author": "fengb",
+  "homepage": "https://github.com/fengb/chai-generator",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengb/chai-generator"
+  },
+  "keywords": [
+    "chai",
+    "generator",
+    "es6",
+    "test",
+    "assert",
+    "assertion"
+  ],
+  "bugs": {
+    "url": "https://github.com/fengb/chai-generator/issues"
+  }
+}
