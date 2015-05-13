@@ -23,5 +23,11 @@
   ],
   "bugs": {
     "url": "https://github.com/fengb/chai-generator/issues"
+  },
+  "dependencies": {
+    "chai": "^2.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.4"
   }
 }
