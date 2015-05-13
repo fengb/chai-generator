@@ -11,10 +11,10 @@ module.exports = function(chai, utils){
   }
 
   function description(next){
-    var description = next.done ? 'return "' : 'yield "'
-    description += next.value + '"'
+    var description = next.done ? 'return ' : 'yield '
+    description += utils.objDisplay(next.value)
 
-    return description
+    return '{ ' + description + ' }'
   }
 
   function assertNext(context, expected){
