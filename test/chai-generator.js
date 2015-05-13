@@ -76,13 +76,15 @@ describe('chai-generator', function(){
     })
   })
 
-  describe('.with.parameter(param).to.yield(value)', function(){
-    it('works with echo generator', function(){
-      var generator = createEcho(1)
-      chai.expect(generator.next(1)).to.yield(1)
-      chai.expect(generator.next(4)).to.yield(4)
-      chai.expect(generator.next('foo')).to.yield('foo')
-      chai.expect(generator).to.yield(undefined)
+  describe('generator with next parameter', function(){
+    describe('.to.yield(value)', function(){
+      it('works with echo generator', function(){
+        var generator = createEcho(1)
+        chai.expect(generator.next()).to.yield(1)
+        chai.expect(generator.next(4)).to.yield(4)
+        chai.expect(generator.next('foo')).to.yield('foo')
+        chai.expect(generator).to.yield(undefined)
+      })
     })
   })
 })
