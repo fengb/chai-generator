@@ -43,4 +43,20 @@ module.exports = function(chai, utils){
       assertNext(this, { value: expectedValue, done: true })
     }
   })
+
+  chai.assert.yield = function(val, exp, msg){
+    new chai.Assertion(val, msg).to.yield(exp)
+  }
+
+  chai.assert.return = function(val, exp, msg){
+    new chai.Assertion(val, msg).to.return(exp)
+  }
+
+  chai.assert.notYield = function(val, exp, msg){
+    new chai.Assertion(val, msg).not.to.yield(exp)
+  }
+
+  chai.assert.notReturn = function(val, exp, msg){
+    new chai.Assertion(val, msg).not.to.return(exp)
+  }
 }
