@@ -30,7 +30,7 @@ function *createEcho(echo){
   }
 }
 
-describe('chai-generator', function(){
+describe('expect()', function(){
   describe('.to.yield(value)', function(){
     it('works with { value: "val", done: false }', function(){
       var next = { value: 'val', done: false }
