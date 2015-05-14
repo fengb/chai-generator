@@ -24,7 +24,7 @@ module.exports = function(chai, utils){
     }
 
     context.assert(
-      actual.value === expected.value && actual.done === expected.done
+      actual.done === expected.done && utils.eql(actual.value, expected.value)
     , "expected #{this} to " + description(expected) + " but received " + description(actual)
     , "expected #{this} to not " + description(actual)
     , expected

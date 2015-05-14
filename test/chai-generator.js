@@ -32,6 +32,16 @@ function *createEcho(echo){
 
 describe('chai-generator', function(){
   describe('.to.yield(value)', function(){
+    it('works with { value: "val", done: false }', function(){
+      var next = { value: 'val', done: false }
+      chai.expect(next).to.yield('val')
+    })
+
+    it('works with { value: ["deep", "equals"], done: false }', function(){
+      var next = { value: ['deep', 'equals'], done: false }
+      chai.expect(next).to.yield(['deep', 'equals'])
+    })
+
     it('works with counting generator', function(){
       var generator = createCounter()
       chai.expect(generator).to.yield(0)
@@ -48,14 +58,14 @@ describe('chai-generator', function(){
       chai.expect(generator).to.yield(DEFAULT_YIELD)
       chai.expect(generator).to.yield(DEFAULT_YIELD)
     })
-
-    it('works with { value: "val", done: false }', function(){
-      var next = { value: 'val', done: false }
-      chai.expect(next).to.yield('val')
-    })
   })
 
   describe('.not.to.yield(value)', function(){
+    it('works with { value: "val", done: false }', function(){
+      var next = { value: 'val', done: false }
+      chai.expect(next).not.to.yield('foo')
+    })
+
     it('works when yielding the wrong value', function(){
       var generator = createCounter()
       chai.expect(generator).not.to.yield(4)
@@ -66,14 +76,14 @@ describe('chai-generator', function(){
       var generator = createReturnOnly()
       chai.expect(generator).not.to.yield(DEFAULT_RETURN)
     })
-
-    it('works with { value: "val", done: false }', function(){
-      var next = { value: 'val', done: false }
-      chai.expect(next).not.to.yield('foo')
-    })
   })
 
   describe('.to.return(value)', function(){
+    it('works with { value: "val", done: true }', function(){
+      var next = { value: 'val', done: true }
+      chai.expect(next).to.return('val')
+    })
+
     it('works with return only generator', function(){
       var generator = createReturnOnly()
       chai.expect(generator).to.return(DEFAULT_RETURN)
@@ -87,14 +97,14 @@ describe('chai-generator', function(){
       generator.next()
       chai.expect(generator).to.return(DEFAULT_RETURN)
     })
-
-    it('works with { value: "val", done: true }', function(){
-      var next = { value: 'val', done: true }
-      chai.expect(next).to.return('val')
-    })
   })
 
   describe('.not.to.return(value)', function(){
+    it('works with { value: "val", done: true }', function(){
+      var next = { value: 'val', done: true }
+      chai.expect(next).not.to.return('foo')
+    })
+
     it('works when return the wrong value', function(){
       var generator = createReturnOnly()
       chai.expect(generator).not.to.return('fail')
@@ -105,14 +115,9 @@ describe('chai-generator', function(){
       chai.expect(generator).not.to.return(0)
       chai.expect(generator).not.to.return(1)
     })
-
-    it('works with { value: "val", done: true }', function(){
-      var next = { value: 'val', done: true }
-      chai.expect(next).not.to.return('foo')
-    })
   })
 
-  describe('generator with next parameter', function(){
+  describe('.next(parameter)', function(){
     describe('.to.yield(value)', function(){
       it('works with echo generator', function(){
         var generator = createEcho(1)
