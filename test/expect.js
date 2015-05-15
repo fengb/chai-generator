@@ -1,7 +1,8 @@
-var chai = module.exports = require('chai')
-var chaiGenerator = require('..')
-
-chai.use(chaiGenerator)
+if(typeof chai === 'undefined'){
+  var chai = module.exports = require('chai')
+  var chaiGenerator = require('..')
+  chai.use(chaiGenerator)
+}
 
 var DEFAULT_RETURN = 'retoin'
 var DEFAULT_YIELD = 'yeild'
