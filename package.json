@@ -1,6 +1,6 @@
 {
   "name": "chai-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Extend Chai to test ES6 generators",
   "author": "fengb",
   "homepage": "https://github.com/fengb/chai-generator",
