@@ -3,11 +3,27 @@
 This is a plugin for [chai](http://chaijs.com) to simplify the testing of
 Javascript generators, as introduced in ES6 / ES2015.
 
+## Setup
+
+### node.js / io.js
+
+```javascript
+var chai = require('chai')
+chai.use(require('chai-generator'))
+```
+
+### Browser
+
+```html
+<script src="chai.js"></script>
+<script src="chai-generator.js"></script>
+```
+
 ## Assertions
 
 ### .yield
 
-Assert that a value is yielded from generator.next(). Returned values are not
+Assert that a value is yielded from `generator.next()`. Returned values are not
 considered yielded.
 
 ```javascript
@@ -26,7 +42,7 @@ assert.yield(generator.next(10), 10)
 
 ### .return
 
-Assert that a value is returned from generator.next(). Yielded values are not
+Assert that a value is returned from `generator.next()`. Yielded values are not
 considered returned.
 
 ```javascript
