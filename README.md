@@ -1,4 +1,4 @@
-# chai-generator
+# chai-generator [![NPM Version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
 This is a plugin for [chai](http://chaijs.com) to simplify the testing of
 Javascript generators, as introduced in ES6 / ES2015.
@@ -73,3 +73,8 @@ assert.return(generator, 1)
 assert.notReturn(generator, 'missing')
 assert.return(generator.next(10), 10)
 ```
+
+[npm-image]: https://img.shields.io/npm/v/chai-generator.svg?style=flat
+[npm-url]: https://npmjs.org/package/chai-generator
+[travis-image]: https://img.shields.io/travis/fengb/chai-generator.svg?style=flat
+[travis-url]: https://travis-ci.org/fengb/chai-generator
