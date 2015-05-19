@@ -3,6 +3,21 @@
 This is a plugin for [chai](http://chaijs.com) to simplify the testing of
 Javascript generators, as introduced in ES6 / ES2015.
 
+Because the yield / return signature of generators is a little obtuse, it can
+result in annoyingly verbose tests:
+
+```javascript
+expect(generator.next()).to.deep.equal({ done: false, value: 15 })
+expect(generator.next()).to.deep.equal({ done: true, value: -1 })
+```
+
+`chai-generator` removes the muck so your test can look like your intent:
+
+```javascript
+expect(generator).to.yield(15)
+expect(generator).to.return(-1)
+```
+
 ## Setup
 
 ### node.js / io.js
