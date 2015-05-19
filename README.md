@@ -74,6 +74,10 @@ assert.notReturn(generator, 'missing')
 assert.return(generator.next(10), 10)
 ```
 
+# License
+
+`chai-generator` is released under the [MIT License](https://github.com/fengb/chai-generator/blob/master/LICENSE)
+
 [npm-image]: https://img.shields.io/npm/v/chai-generator.svg?style=flat
 [npm-url]: https://npmjs.org/package/chai-generator
 [travis-image]: https://img.shields.io/travis/fengb/chai-generator.svg?style=flat
