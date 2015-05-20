@@ -1,7 +1,7 @@
 {
   "name": "chai-generator",
   "version": "1.0.1",
-  "description": "Extend Chai to test ES6 generators",
+  "description": "Extend Chai with assertions for Javascript generators",
   "author": "fengb",
   "homepage": "https://github.com/fengb/chai-generator",
   "license": "MIT",
