@@ -31,7 +31,7 @@
     return '{ ' + description + ' }'
   }
 
-  function assertNext(context, expected){
+  function assertNext(_super, context, expected){
     var actual = extractNext(context._obj)
     if(!actual){
       return _super.apply(this, arguments)
@@ -48,13 +48,13 @@
 
   chai.Assertion.overwriteMethod('yield', function(_super){
     return function(expectedValue){
-      assertNext(this, { value: expectedValue, done: false })
+      assertNext(_super, this, { value: expectedValue, done: false })
     }
   })
 
   chai.Assertion.overwriteMethod('return', function(_super){
     return function(expectedValue){
-      assertNext(this, { value: expectedValue, done: true })
+      assertNext(_super, this, { value: expectedValue, done: true })
     }
   })
 
