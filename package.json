@@ -1,6 +1,6 @@
 {
   "name": "chai-generator",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Extend Chai with assertions for Javascript generators",
   "author": "fengb",
   "homepage": "https://github.com/fengb/chai-generator",
