@@ -7,25 +7,25 @@ if(typeof chai === 'undefined'){
 var DEFAULT_RETURN = 'retoin'
 var DEFAULT_YIELD = 'yeild'
 
-function *createCounter(){
+function* createCounter(){
   var i = 0;
   while(1){
     yield i++;
   }
 }
 
-function *createReturnOnly(){
+function* createReturnOnly(){
   return DEFAULT_RETURN
 }
 
-function *createNtimes(n){
+function* createNtimes(n){
   for (var i = 0; i < n; i++) {
     yield DEFAULT_YIELD
   }
   return DEFAULT_RETURN
 }
 
-function *createEcho(echo){
+function* createEcho(echo){
   while(1){
     echo = yield echo
   }
@@ -36,11 +36,6 @@ describe('expect()', function(){
     it('works with { value: "val", done: false }', function(){
       var next = { value: 'val', done: false }
       chai.expect(next).to.yield('val')
-    })
-
-    it('works with { value: ["deep", "equals"], done: false }', function(){
-      var next = { value: ['deep', 'equals'], done: false }
-      chai.expect(next).to.yield(['deep', 'equals'])
     })
 
     it('works with counting generator', function(){
@@ -61,6 +56,18 @@ describe('expect()', function(){
     })
   })
 
+  describe('.to.deep.yield(value)', function(){
+    it('works with { value: "val", done: false }', function(){
+      var next = { value: 'val', done: false }
+      chai.expect(next).to.deep.yield('val')
+    })
+
+    it('works with { value: ["deep", "equals"], done: false }', function(){
+      var next = { value: ['deep', 'equals'], done: false }
+      chai.expect(next).to.deep.yield(['deep', 'equals'])
+    })
+  })
+
   describe('.not.to.yield(value)', function(){
     it('works with { value: "val", done: false }', function(){
       var next = { value: 'val', done: false }
@@ -76,6 +83,11 @@ describe('expect()', function(){
     it('works when returning', function(){
       var generator = createReturnOnly()
       chai.expect(generator).not.to.yield(DEFAULT_RETURN)
+    })
+
+    it('works when deep yielding', function(){
+      var next = { value: ['deep', 'equals'], done: false }
+      chai.expect(next).not.to.yield(['deep', 'equals'])
     })
   })
 

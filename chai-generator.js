@@ -13,11 +13,17 @@
     chai.use(chaiGenerator)
   }
 }(this, function(chai, utils){
+  var deepEql = utils.eql
+
+  function strictEql(first, second){
+    return first === second
+  }
+
   function extractNext(obj){
-    if (typeof obj.next === 'function') {
+    if(typeof obj.next === 'function'){
       var generator = obj
       return generator.next()
-    } else if ('done' in obj && 'value' in obj) {
+    } else if('done' in obj && 'value' in obj){
       return obj
     } else {
       // not a real generator
@@ -34,11 +40,12 @@
   function assertNext(_super, context, expected){
     var actual = extractNext(context._obj)
     if(!actual){
-      return _super.apply(this, arguments)
+      return _super.apply(context, arguments)
     }
 
+    var eql = utils.flag(context, 'deep') ? deepEql : strictEql
     context.assert(
-      actual.done === expected.done && utils.eql(actual.value, expected.value)
+      actual.done === expected.done && eql(actual.value, expected.value)
     , "expected #{this} to " + description(expected) + " but received " + description(actual)
     , "expected #{this} to not " + description(actual)
     , expected
@@ -72,5 +79,21 @@
 
   chai.assert.notReturn = function(val, exp, msg){
     new chai.Assertion(val, msg).not.to.return(exp)
+  }
+
+  chai.assert.deepYield = function(val, exp, msg){
+    new chai.Assertion(val, msg).to.deep.yield(exp)
+  }
+
+  chai.assert.deepReturn = function(val, exp, msg){
+    new chai.Assertion(val, msg).to.deep.return(exp)
+  }
+
+  chai.assert.notDeepYield = function(val, exp, msg){
+    new chai.Assertion(val, msg).not.to.deep.yield(exp)
+  }
+
+  chai.assert.notDeepReturn = function(val, exp, msg){
+    new chai.Assertion(val, msg).not.to.deep.return(exp)
   }
 })

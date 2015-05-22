@@ -6,9 +6,9 @@ if(typeof chai === 'undefined'){
 
 describe('assert', function(){
   describe('.yield()', function(){
-    it('works with { value: ["deep", "equals"], done: false }', function(){
-      var next = { value: ['deep', 'equals'], done: false }
-      chai.assert.yield(next, ['deep', 'equals'])
+    it('works with { value: "val", done: false }', function(){
+      var next = { value: 'val', done: false }
+      chai.assert.yield(next, 'val')
     })
   })
 
@@ -16,6 +16,20 @@ describe('assert', function(){
     it('works with { value: "val", done: false }', function(){
       var next = { value: 'val', done: false }
       chai.assert.notYield(next, 'foo')
+    })
+  })
+
+  describe('.deepYield()', function(){
+    it('works with { value: ["deep", "equals"], done: false }', function(){
+      var next = { value: ['deep', 'equals'], done: false }
+      chai.assert.deepYield(next, ['deep', 'equals'])
+    })
+  })
+
+  describe('.notDeepYield()', function(){
+    it('works with { value: ["deep", "equals"], done: false }', function(){
+      var next = { value: ['deep', 'equals'], done: false }
+      chai.assert.notDeepYield(next, ['deep', 'not-equals'])
     })
   })
 
@@ -32,4 +46,19 @@ describe('assert', function(){
       chai.assert.notReturn(next, 'foo')
     })
   })
+
+  describe('.deepReturn()', function(){
+    it('works with { value: ["deep", "equals"], done: true }', function(){
+      var next = { value: ['deep', 'equals'], done: true }
+      chai.assert.deepReturn(next, ['deep', 'equals'])
+    })
+  })
+
+  describe('.notDeepYield()', function(){
+    it('works with { value: ["deep", "equals"], done: true }', function(){
+      var next = { value: ['deep', 'equals'], done: true }
+      chai.assert.notDeepReturn(next, ['deep', 'not-equals'])
+    })
+  })
+
 })

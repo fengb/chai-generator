@@ -55,6 +55,14 @@ assert.notYield(generator, 'missing')
 assert.yield(generator.next(10), 10)
 ```
 
+`.yield` works with the `.deep` chain:
+
+```javascript
+expect(generator).to.deep.yield([1, 2, 3])
+generator.should.deep.yield([1, 2, 3])
+assert.deepYield([1, 2, 3])
+```
+
 ### .return
 
 Assert that a value is returned from `generator.next()`. Yielded values are not
@@ -72,6 +80,14 @@ generator.next(10).should.return(10)
 assert.return(generator, 1)
 assert.notReturn(generator, 'missing')
 assert.return(generator.next(10), 10)
+```
+
+`.return` works with the `.deep` chain:
+
+```javascript
+expect(generator).to.deep.return([1, 2, 3])
+generator.should.deep.return([1, 2, 3])
+assert.deepReturn([1, 2, 3])
 ```
 
 # License
