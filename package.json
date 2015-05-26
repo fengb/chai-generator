@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/fengb/chai-generator/issues"
   },
-  "dependencies": {
+  "peerDependencies": {
     "chai": "^2.0"
   },
   "devDependencies": {
