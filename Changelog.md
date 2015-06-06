@@ -1,3 +1,8 @@
+## v2.0.1
+
+* Convert Chai to peer dependency
+* Support Chai 3.0
+
 ## v2.0.0
 
 * Convert default behavior to use strict equality.  Deep equality is accessible
