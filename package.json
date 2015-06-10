@@ -5,7 +5,7 @@
   "author": "fengb",
   "homepage": "https://github.com/fengb/chai-generator",
   "license": "MIT",
-  "main": "chai-property.js",
+  "main": "chai-generator.js",
   "scripts": {
     "test": "mocha --harmony"
   },
