@@ -1,3 +1,7 @@
+## v2.0.2
+
+* Removed unnecessary index.js
+
 ## v2.0.1
 
 * Convert Chai to peer dependency
