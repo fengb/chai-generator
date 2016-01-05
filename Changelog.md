@@ -1,3 +1,7 @@
+## v2.0.3
+
+* New keywords in `package.json` for Chai plugin docs.
+
 ## v2.0.2
 
 * Removed unnecessary index.js
