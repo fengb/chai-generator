@@ -1,3 +1,8 @@
+## v2.1.0
+
+* Empty value matcher `.yield()` and `.return()` matches only "doneness" and ignores the value
+* `.yield()` and `.return()` now allows chaining (e.g. `.yield().and.equal('foo')`)
+
 ## v2.0.3
 
 * New keywords in `package.json` for Chai plugin docs.
