@@ -66,10 +66,10 @@ describe('expect()', function () {
     })
   })
 
-  describe('.to.yield().equals(value)', function () {
+  describe('.to.yield().and.equal(value)', function () {
     it('works with { value: "val", done: false }', function () {
       var next = { value: 'val', done: false }
-      chai.expect(next).to.yield().equals('val')
+      chai.expect(next).to.yield().and.equal('val')
     })
   })
 
@@ -136,10 +136,10 @@ describe('expect()', function () {
     })
   })
 
-  describe('.to.return().equals(value)', function () {
+  describe('.to.return().and.equal(value)', function () {
     it('works with { value: "val", done: true }', function () {
       var next = { value: 'val', done: true }
-      chai.expect(next).to.return().equals('val')
+      chai.expect(next).to.return().and.equal('val')
     })
   })
 
