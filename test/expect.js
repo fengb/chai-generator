@@ -35,10 +35,17 @@ function * createEcho (echo) {
 }
 
 describe('expect()', function () {
-  describe('.to.yield(value)', function () {
+  describe('.to.yield()', function () {
     it('works with { value: "val", done: false }', function () {
       var next = { value: 'val', done: false }
-      chai.expect(next).to.yield('val')
+      chai.expect(next).to.yield()
+    })
+  })
+
+  describe('.to.yield(value)', function () {
+    it('works with { value: undefined, done: false }', function () {
+      var next = { value: undefined, done: false }
+      chai.expect(next).to.yield(undefined)
     })
 
     it('works with counting generator', function () {
@@ -91,6 +98,13 @@ describe('expect()', function () {
     it('works when deep yielding', function () {
       var next = { value: ['deep', 'equals'], done: false }
       chai.expect(next).not.to.yield(['deep', 'equals'])
+    })
+  })
+
+  describe('.to.return()', function () {
+    it('works with { value: "val", done: true }', function () {
+      var next = { value: 'val', done: true }
+      chai.expect(next).to.return()
     })
   })
 

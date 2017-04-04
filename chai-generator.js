@@ -31,37 +31,47 @@
   }
 
   function description (next) {
-    var description = next.done ? 'return ' : 'yield '
-    description += utils.objDisplay(next.value)
+    var description = next.done ? 'return' : 'yield'
+    if (next.hasOwnProperty('value')) {
+      description += ' ' + utils.objDisplay(next.value)
+    }
 
     return '{ ' + description + ' }'
   }
 
-  function assertNext (_super, context, expected) {
+  function assertNext (_super, context, action, args) {
     var actual = extractNext(context._obj)
     if (!actual) {
       return _super.apply(context, arguments)
     }
 
     var eql = utils.flag(context, 'deep') ? deepEql : strictEql
-    context.assert(
-      actual.done === expected.done && eql(actual.value, expected.value)
-    , 'expected #{this} to ' + description(expected) + ' but received ' + description(actual)
-    , 'expected #{this} to not ' + description(actual)
-    , expected
-    , actual
-    )
+    var expectedDone = action === 'return'
+    if (args.length > 0) {
+      expectedValue = args[0]
+      context.assert(
+        actual.done === expectedDone && eql(actual.value, expectedValue)
+      , 'expected #{this} to ' + description({ done: expectedDone, value: expectedValue}) + ' but received ' + description(actual)
+      , 'expected #{this} not to ' + description(actual)
+      )
+    } else {
+      context.assert(
+        actual.done === expectedDone
+      , 'expected #{this} to ' + description({ done: expectedDone }) + ' but received ' + description(actual)
+      , 'expected #{this} not to ' + description({ done: expectedDone })
+      )
+    }
   }
 
   chai.Assertion.overwriteMethod('yield', function (_super) {
-    return function (expectedValue) {
-      assertNext(_super, this, { value: expectedValue, done: false })
+    return function () {
+      assertNext(_super, this, 'yield', arguments)
     }
   })
 
   chai.Assertion.overwriteMethod('return', function (_super) {
-    return function (expectedValue) {
-      assertNext(_super, this, { value: expectedValue, done: true })
+    return function () {
+      assertNext(_super, this, 'return', arguments)
     }
   })
 
