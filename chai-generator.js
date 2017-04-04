@@ -77,20 +77,36 @@
     }
   })
 
-  chai.assert.yield = function (val, exp, msg) {
-    new chai.Assertion(val, msg).to.yield(exp)
+  chai.assert.yield = function (val, exp) {
+    if (arguments.length > 1) {
+      new chai.Assertion(val).to.yield(exp)
+    } else {
+      new chai.Assertion(val).to.yield()
+    }
   }
 
-  chai.assert.return = function (val, exp, msg) {
-    new chai.Assertion(val, msg).to.return(exp)
+  chai.assert.return = function (val, exp) {
+    if (arguments.length > 1) {
+      new chai.Assertion(val).to.return(exp)
+    } else {
+      new chai.Assertion(val).to.return()
+    }
   }
 
-  chai.assert.notYield = function (val, exp, msg) {
-    new chai.Assertion(val, msg).not.to.yield(exp)
+  chai.assert.notYield = function (val, exp) {
+    if (arguments.length > 1) {
+      new chai.Assertion(val).not.to.yield(exp)
+    } else {
+      new chai.Assertion(val).not.to.yield()
+    }
   }
 
-  chai.assert.notReturn = function (val, exp, msg) {
-    new chai.Assertion(val, msg).not.to.return(exp)
+  chai.assert.notReturn = function (val, exp) {
+    if (arguments.length > 1) {
+      new chai.Assertion(val).not.to.return(exp)
+    } else {
+      new chai.Assertion(val).not.to.return()
+    }
   }
 
   chai.assert.deepYield = function (val, exp, msg) {

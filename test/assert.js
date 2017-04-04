@@ -9,14 +9,24 @@ if (typeof chai === 'undefined') {
 
 describe('assert', function () {
   describe('.yield()', function () {
-    it('works with { value: "val", done: false }', function () {
+    it('works without expectation', function () {
+      var next = { value: 'val', done: false }
+      chai.assert.yield(next)
+    })
+
+    it('works with expectation', function () {
       var next = { value: 'val', done: false }
       chai.assert.yield(next, 'val')
     })
   })
 
   describe('.notYield()', function () {
-    it('works with { value: "val", done: false }', function () {
+    it('works without expectation', function () {
+      var next = { value: 'val', done: true }
+      chai.assert.notYield(next)
+    })
+
+    it('works with expectation', function () {
       var next = { value: 'val', done: false }
       chai.assert.notYield(next, 'foo')
     })
