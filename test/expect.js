@@ -66,6 +66,13 @@ describe('expect()', function () {
     })
   })
 
+  describe('.to.yield().equals(value)', function () {
+    it('works with { value: "val", done: false }', function () {
+      var next = { value: 'val', done: false }
+      chai.expect(next).to.yield().equals('val')
+    })
+  })
+
   describe('.to.deep.yield(value)', function () {
     it('works with { value: "val", done: false }', function () {
       var next = { value: 'val', done: false }
@@ -126,6 +133,13 @@ describe('expect()', function () {
       generator.next()
       generator.next()
       chai.expect(generator).to.return(DEFAULT_RETURN)
+    })
+  })
+
+  describe('.to.return().equals(value)', function () {
+    it('works with { value: "val", done: true }', function () {
+      var next = { value: 'val', done: true }
+      chai.expect(next).to.return().equals('val')
     })
   })
 

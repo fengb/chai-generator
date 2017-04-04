@@ -61,6 +61,8 @@
       , 'expected #{this} not to ' + description({ done: expectedDone })
       )
     }
+
+    context._obj = actual.value
   }
 
   chai.Assertion.overwriteMethod('yield', function (_super) {
