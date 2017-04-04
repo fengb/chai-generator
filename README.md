@@ -42,10 +42,12 @@ Assert that a value is yielded from `generator.next()`. Returned values are not
 considered yielded.
 
 ```javascript
+expect(generator).to.yield()
 expect(generator).to.yield(1)
 expect(generator).not.to.yield('missing')
 expect(generator.next(10)).to.yield(10)
 
+generator.should.yield()
 generator.should.yield(1)
 generator.should.not.yield('missing')
 generator.next(10).should.yield(10)
@@ -63,20 +65,30 @@ generator.should.deep.yield([1, 2, 3])
 assert.deepYield([1, 2, 3])
 ```
 
+`.yield` can also be chained with other assertions (not available with assert):
+
+```javascript
+expect(generator).to.yield().and.equal(1)
+generator.should.yield().and.equal(1)
+```
+
 ### .return
 
 Assert that a value is returned from `generator.next()`. Yielded values are not
 considered returned.
 
 ```javascript
+expect(generator).to.return()
 expect(generator).to.return(1)
 expect(generator).not.to.return('missing')
 expect(generator.next(10)).to.return(10)
 
+generator.should.return()
 generator.should.return(1)
 generator.should.not.return('missing')
 generator.next(10).should.return(10)
 
+assert.return(generator)
 assert.return(generator, 1)
 assert.notReturn(generator, 'missing')
 assert.return(generator.next(10), 10)
@@ -88,6 +100,13 @@ assert.return(generator.next(10), 10)
 expect(generator).to.deep.return([1, 2, 3])
 generator.should.deep.return([1, 2, 3])
 assert.deepReturn([1, 2, 3])
+```
+
+`.return` can also be chained with other assertions (not available with assert):
+
+```javascript
+expect(generator).to.return().and.equal(1)
+generator.should.return().and.equal(1)
 ```
 
 # License
