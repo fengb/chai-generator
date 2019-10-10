@@ -1,3 +1,7 @@
+## v2.1.1
+
+* Support Chai 4.x
+
 ## v2.1.0
 
 * Empty value matcher `.yield()` and `.return()` matches only "doneness" and ignores the value
